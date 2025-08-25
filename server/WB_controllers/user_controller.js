@@ -1,0 +1,65 @@
+const User = require("../WB_models/user_model");
+const jwt = require("jsonwebtoken");
+
+const SECRET_KEY = process.env.JWT_SECRET;
+
+// Register User
+exports.registerUser = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).json({ error: "All fields are required" });
+        }
+
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ error: "User already exists" });
+        }
+
+        const newUser = new User({ email, password });
+        await newUser.save();
+
+        //  Generate JWT
+        const token = jwt.sign({ userId: newUser._id }, SECRET_KEY, { expiresIn: "1h" });
+
+        res.status(201).json({
+            message: "User registered successfully!",
+            token, // return token
+            userId: newUser._id
+        });
+    } catch (error) {
+        res.status(500).json({ error: "Registration failed", details: error.message });
+    }
+};
+
+// Login User
+exports.loginUser = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        const user = await User.findOne({ email });
+        if (!user) return res.status(400).json({ error: "Invalid credentials" });
+
+        const isMatch = await user.comparePassword(password);
+        if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
+
+        const token = jwt.sign({ userId: user._id }, SECRET_KEY, { expiresIn: "7d" });
+
+        res.json({ message: "Login successful", token });
+    } catch (error) {
+        res.status(500).json({ error: "Login failed", details: error.message });
+    }
+};
+
+// Get User Details
+exports.getUser = async (req, res) => {
+    try {
+        const user = await User.findById(req.userId).select("-password");
+        if (!user) return res.status(404).json({ error: "User not found" });
+
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to get user", details: error.message });
+    }
+};
