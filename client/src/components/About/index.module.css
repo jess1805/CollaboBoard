@@ -1,0 +1,144 @@
+/* src/components/About/index.module.css */
+.aboutContainer {
+  background-color: #0f0f1a;
+  min-height: 100vh;
+  color: #f0f0f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+} 
+
+.logo {
+  font-size: 2.5rem; 
+  font-weight: 900;  
+  background: linear-gradient(90deg, #ffffff, #b388ff); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  font-family: 'Poppins', sans-serif; 
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  filter: brightness(1.2);
+  transform: scale(1.05);
+}
+
+
+/* .navLinks a {
+  text-decoration: none;
+  color: #f0f0f5;
+  padding: 10px 20px;
+  margin-left: 15px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #b388ff, #9c27b0);
+  transition: all 0.3s ease;
+  font-weight: 500;
+} */
+
+.navButton {
+  text-decoration: none;
+  color: #f0f0f5;
+  padding: 10px 20px;
+  margin-left: 15px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #b388ff, #9c27b0);
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.navButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(179, 136, 255, 0.6);
+}
+
+/* Hero Section */
+.heroSection {
+  text-align: center;
+  padding: 80px 20px;
+  background: #1a1a2e;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #b388ff;
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #dcdcdc;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Main Content */
+.mainContent {
+  padding: 60px 50px;
+}
+
+.section {
+  margin-bottom: 60px;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #b388ff;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.featureGrid,
+.howItWorksGrid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.featureCard,
+.stepCard {
+  background: #1a1a2e;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.featureCard:hover,
+.stepCard:hover {
+  transform: translateY(-10px);
+}
+
+.featureTitle,
+.stepTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #f0f0f5;
+  margin-bottom: 10px;
+}
+
+.featureText,
+.stepText,
+.missionText {
+  font-size: 1rem;
+  color: #dcdcdc;
+  line-height: 1.6;
+}
+
+.missionText {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}

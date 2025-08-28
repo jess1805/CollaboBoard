@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const SECRET_KEY = process.env.JWT_SECRET;
 
-exports.authMiddleware = (req, res, next) => {
+exports.middleware_auth = (req, res, next) => {
     const token = req.header("Authorization");
     
     if (!token) return res.status(401).json({ error: "Access Denied: No Token" });

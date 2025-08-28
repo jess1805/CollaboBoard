@@ -1,0 +1,108 @@
+.homeContainer {
+  background-color: #0f0f1a; 
+  min-height: 100vh;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* --- FIX START --- */
+  display: flex;
+  flex-direction: column;
+  /* --- FIX END --- */
+}  
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+} 
+
+.logo {
+  font-size: 2.5rem; 
+  font-weight: 900;  
+  background: linear-gradient(90deg, #ffffff, #b388ff); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  font-family: 'Poppins', sans-serif; 
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  filter: brightness(1.2);
+  transform: scale(1.05);
+}
+
+/* --- FIX START: Renamed selector --- */
+.navButton {
+  text-decoration: none;
+  color: white;
+  padding: 10px 20px;
+  margin-left: 15px;
+  border-radius: 30px;                     
+  background: linear-gradient(135deg, #b388ff, #9c27b0); 
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.navButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(179, 136, 255, 0.6);
+}
+/* --- FIX END --- */
+
+/* Hero Section */
+.hero {
+  display: flex;
+  flex-direction: column;      
+  align-items: center;
+  /* --- FIX START: Corrected vertical alignment --- */         
+  justify-content: center; 
+  flex-grow: 1; /* This makes the hero section fill the remaining space */
+  /* --- FIX END --- */          
+  text-align: center;          
+  gap: 40px;                   
+}
+
+.textSection {
+  max-width: 600px;
+} 
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.gradientText {
+  background: linear-gradient(90deg, #d18bff, #a066ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+} 
+
+.description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #dcdcdc;
+} 
+
+.ctaButton {
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  background: linear-gradient(135deg, #b388ff, #9c27b0);
+  border: none;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+  text-decoration: none; /* Added for consistency on Link components */
+  display: inline-block; /* Added for consistency */
+  transition: transform 0.2s, box-shadow 0.3s;
+} 
+
+.ctaButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(179, 136, 255, 0.7);
+} 
+
+/* --- FIX: The unused .imageSection img rule has been REMOVED --- */
