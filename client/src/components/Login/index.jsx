@@ -36,7 +36,6 @@ const Login = () => {
 
 return (
   <div className={styles.loginContainer}>
-    {/* Navbar */}
     <nav className={styles.navbar}>
       <div className={styles.logo}>CollaboBoard</div>
       <div className={styles.navLinks}>

@@ -3,15 +3,13 @@
   right: 0;
   top: 0;
   height: 100vh;
-  width: 350px; /* Adjust width as needed */
-  background: rgba(240, 240, 240, 0.9); /* Slight transparency */
+  width: 350px; 
+  background: rgba(240, 240, 240, 0.9); 
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px); /* Glassmorphism effect */
+  backdrop-filter: blur(10px); 
   padding: 20px;
-  /* --- FIX START --- */
   display: flex;
-  flex-direction: column;
-  /* --- FIX END --- */
+  flex-direction: column; 
 }
   
 .sidebar-title {
@@ -36,7 +34,6 @@
   background-color: #45a049;
 }
 
-/* Suggested improvement for disabled state */
 .create-button:disabled {
   background-color: #999;
   opacity: 0.6;
@@ -47,7 +44,7 @@
   list-style-type: none;
   padding: 0;
   margin-top: 20px;
-  overflow-y: auto; /* Allow the list to scroll if it gets long */
+  overflow-y: auto; 
 }
 
 .canvas-item {
@@ -73,7 +70,7 @@
 .canvas-name {
   font-size: 1rem;
   color: #333;
-  cursor: pointer; /* Add cursor pointer for better UX */
+  cursor: pointer; 
 }
 
 .delete-button {
@@ -90,13 +87,10 @@
 }
 
 .share-container {
-  /* --- FIX START: Removed position: absolute properties --- */
-  margin-top: auto; /* Pushes this and auth-button to the bottom */
-  padding-top: 20px; /* Add some space above */
-  /* --- FIX END --- */
-
+  margin-top: auto; 
+  padding-top: 20px; 
   display: flex;
-  flex-direction: column; /* Stack input and messages vertically */
+  flex-direction: column; 
   gap: 10px;
   background: white;
   padding: 15px;
@@ -114,7 +108,7 @@
 }
 
 .share-container input {
-    flex-grow: 1; /* Allow input to take available space */
+    flex-grow: 1; 
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -166,10 +160,7 @@
 }
 
 .auth-button {
-  /* --- FIX START: Removed position: absolute properties --- */
-  margin-top: 15px; /* Add space between share and logout */
-  /* --- FIX END --- */
-
+  margin-top: 15px;
   width: 100%;
   padding: 10px;
   background-color: #d9534f;

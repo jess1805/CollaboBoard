@@ -8,7 +8,7 @@ const boardContext = createContext({
   history: [[]],
   index: 0,
   canvasId: "",
-  socket: null, // 👈 Add this
+  socket: null,
   setElements: () => {},
   boardMouseDownHandler: () => {},
   setCanvasId: () => {},
@@ -17,7 +17,7 @@ const boardContext = createContext({
   boardMouseUpHandler: () => {},
   setUserLoginStatus: () => {},
   setHistory: () => {},
-  setSocket: () => {} // 👈 Add this
+  setSocket: () => {} 
 });
 
 

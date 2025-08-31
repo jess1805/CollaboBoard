@@ -8,7 +8,7 @@
   flex-direction: column;
 }
 
-/* Navbar styles */
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -33,16 +33,6 @@
 }
 
 
-/* .navLinks a {
-  text-decoration: none;
-  color: #f0f0f5;
-  padding: 10px 20px;
-  margin-left: 15px;
-  border-radius: 30px;
-  background: linear-gradient(135deg, #b388ff, #9c27b0);
-  transition: all 0.3s ease;
-  font-weight: 500;
-} */
 
 .navButton {
   text-decoration: none;
@@ -60,7 +50,7 @@
   box-shadow: 0 0 15px rgba(179, 136, 255, 0.6);
 }
 
-/* Hero Section */
+
 .heroSection {
   text-align: center;
   padding: 80px 20px;
@@ -82,7 +72,7 @@
   margin: 0 auto;
 }
 
-/* Main Content */
+
 .mainContent {
   padding: 60px 50px;
 }

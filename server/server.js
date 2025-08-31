@@ -27,12 +27,11 @@ connectToDB();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: ["http://localhost:3000", "https://whiteboard-tutorial-eight.vercel.app"],
+        origin: ["http://localhost:3000", "https://whiteboard-tutorial-eight.vercel.app", "http://localhost:5173"],
         methods: ["GET", "POST"],
     },
 });
 
-// --- CHANGE 1: AUTHENTICATION MIDDLEWARE ADDED ---
 // This middleware acts as a security guard for every new connection.
 io.use((socket, next) => {
     const authHeader = socket.handshake.headers.authorization;
@@ -42,7 +41,7 @@ io.use((socket, next) => {
     try {
         const token = authHeader.split(" ")[1];
         const decoded = jwt.verify(token, SECRET_KEY);
-        socket.userId = decoded.userId; // Attach the user's ID to the socket
+        socket.userId = decoded.userId;
         next();
     } catch (error) {
         next(new Error("Authentication Error: Invalid token"));
@@ -57,7 +56,6 @@ io.on("connection", (socket) => {
 
     socket.on("joinCanvas", async ({ canvasId }) => {
         try {
-            // The user is already authenticated by the middleware above!
             const userId = socket.userId;
 
             const canvas = await Canvas.findById(canvasId);
@@ -81,20 +79,15 @@ io.on("connection", (socket) => {
         }
     });
 
-    // --- CHANGE 2: DEBOUNCE LOGIC ADDED ---
     socket.on("drawingUpdate", async ({ canvasId, elements }) => {
-        // Broadcast drawing to others instantly
         socket.to(canvasId).emit("receiveDrawingUpdate", elements);
 
-        // Update in-memory data
         canvasData[canvasId] = elements;
 
-        // Clear any previous timer to reset the debounce period
         if (debounceTimers.has(canvasId)) {
             clearTimeout(debounceTimers.get(canvasId));
         }
 
-        // Set a new timer to save to DB after 2 seconds of inactivity
         const timer = setTimeout(async () => {
             try {
                 console.log(`Saving canvas ${canvasId} to DB...`);

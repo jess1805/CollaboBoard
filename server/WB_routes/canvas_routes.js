@@ -10,5 +10,11 @@ router.put("/share/:id", middleware_auth, shareCanvas);
 router.put("/unshare/:id", middleware_auth, unshareCanvas);
 router.delete("/delete/:id", middleware_auth, deleteCanvas); 
 router.get("/list", middleware_auth, getUserCanvases);
+router.get("/test-auth", middleware_auth, (req, res) => {
+    res.json({ 
+        message: "Auth working", 
+        userId: req.userId 
+    });
+});
 
 module.exports = router;

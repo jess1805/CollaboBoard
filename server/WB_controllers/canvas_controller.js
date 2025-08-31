@@ -2,10 +2,9 @@ const Canvas = require("../WB_models/canvas_model");
 const User = require("../WB_models/user_model");
 const mongoose = require("mongoose");
 
-// Create a new canvas
 exports.createCanvas = async (req, res) => {
     try {
-        const userId = req.userId; // Get the authenticated user ID
+        const userId = req.userId; 
 
         const newCanvas = new Canvas({
             owner: userId,
@@ -19,34 +18,6 @@ exports.createCanvas = async (req, res) => {
         res.status(500).json({ error: "Failed to create canvas", details: error.message });
     }
 };
-
-// Update an existing canvas (when elements are drawn)
-// exports.updateCanvas = async (req, res) => {
-//     try {
-//         const { canvasId, elements } = req.body;
-//         const userId = req.userId;
-//         console.log("canvas id ", canvasId)
-
-//         const canvas = await Canvas.findById(canvasId);
-//         if (!canvas) {
-//             return res.status(404).json({ error: "Canvas not found" });
-//         }
-
-//         // Ensure only the owner or shared users can update
-//         if (canvas.owner.toString() !== userId && !canvas.shared.includes(userId)) {
-//             return res.status(403).json({ error: "Unauthorized to update this canvas" });
-//         }
-
-//         canvas.elements = elements;
-//         await canvas.save();
-
-//         console.log("saved")
-
-//         res.json({ message: "Canvas updated successfully" });
-//     } catch (error) {
-//         res.status(500).json({ error: "Failed to update canvas", details: error.message });
-//     }
-// };
 
 // Load a canvas
 exports.loadCanvas = async (req, res) => {
@@ -70,7 +41,7 @@ exports.loadCanvas = async (req, res) => {
     }
 };
 
-
+//sharing canvas to an user
 exports.shareCanvas = async (req, res) => {
     try {
         const { email } = req.body; 
@@ -142,6 +113,7 @@ exports.unshareCanvas = async (req, res) => {
     }
 };
 
+//Deleting a canvas
 exports.deleteCanvas = async (req, res) => {
     try {
         const canvasId = req.params.id;
@@ -163,6 +135,7 @@ exports.deleteCanvas = async (req, res) => {
     }
 };
 
+//Get canvas
 exports.getUserCanvases = async (req, res) => {
     try {
         const userId = req.userId;

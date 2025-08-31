@@ -2,28 +2,6 @@ import React, { useReducer } from "react";
 import toolboxContext from "./toolbox-context";
 import { COLORS, TOOLBOX_ACTIONS, TOOL_ITEMS } from "../constant";
 
-// function toolboxReducer(state, action) {
-//   switch (action.type) {
-//     case TOOLBOX_ACTIONS.CHANGE_STROKE: {
-//       const newState = { ...state };
-//       newState[action.payload.tool].stroke = action.payload.stroke;
-//       return newState;
-//     }
-//     case TOOLBOX_ACTIONS.CHANGE_FILL: {
-//       const newState = { ...state };
-//       newState[action.payload.tool].fill = action.payload.fill;
-//       return newState;
-//     }
-//     case TOOLBOX_ACTIONS.CHANGE_SIZE: {
-//       const newState = { ...state };
-//       newState[action.payload.tool].size = action.payload.size;
-//       return newState;
-//     }
-//     default:
-//       return state;
-//   }
-// }
-
 function toolboxReducer(state, action) {
   switch (action.type) {
     case TOOLBOX_ACTIONS.CHANGE_STROKE: {
