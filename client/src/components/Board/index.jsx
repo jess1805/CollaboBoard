@@ -83,7 +83,7 @@ function Board({ id }) {
       fetchedCanvasIds.current.add(id); 
 
       try {
-        const response = await axios.get(`http://localhost:5000/api/canvas/load/${id}`, {
+        const response = await axios.get(`https://collaboboard-mqtp.onrender.com/api/canvas/load/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 

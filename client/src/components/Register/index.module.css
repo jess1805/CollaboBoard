@@ -10,13 +10,12 @@
 
 
 .navbar {
-  width: 100%;
+  width: 92%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 50px;
 }
-
 
 .logo {
   font-size: 2.5rem;

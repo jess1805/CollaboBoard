@@ -42,19 +42,84 @@ exports.loadCanvas = async (req, res) => {
 };
 
 //sharing canvas to an user
+// exports.shareCanvas = async (req, res) => {
+//     try {
+//         const { email } = req.body; 
+//         const canvasId = req.params.id;
+//         const userId = req.userId; 
+
+//         // Find the user by email
+//         const userToShare = await User.findOne({ email });
+//         if (!userToShare) {
+//             return res.status(404).json({ error: "User with this email not found" });
+//         }
+
+//         const canvas = await Canvas.findById(canvasId);
+//         if (!canvas) {
+//             return res.status(404).json({ error: "Canvas not found" });
+//         }
+
+//         if (canvas.owner.toString() !== userId) {
+//             return res.status(403).json({ error: "Only the owner can share this canvas" });
+//         }
+
+//         // Ensure the shared userId is an ObjectId
+//         const sharedUserId = userToShare._id;
+
+//         // Prevent adding the owner to shared list
+//         if (canvas.owner.toString() === sharedUserId.toString()) {
+//             return res.status(400).json({ error: "Owner cannot be added to shared list" });
+//         }
+
+//         // Check if the user is already in the shared array
+//         const alreadyShared = canvas.shared.some(id => id.toString() === sharedUserId.toString());
+//         if (alreadyShared) {
+//             return res.status(400).json({ error: "Already shared with user" });
+//         }
+
+//         // Add user to shared list
+//         canvas.shared.push(sharedUserId);
+//         await canvas.save();
+
+//         res.json({ message: "Canvas shared successfully" });
+//     } catch (error) {
+//         res.status(500).json({ error: "Failed to share canvas", details: error.message });
+//     }
+// };
 exports.shareCanvas = async (req, res) => {
     try {
+        console.log("=== SHARE CANVAS DEBUG START ===");
+        console.log("Headers:", req.headers);
+        console.log("Body:", req.body);
+        console.log("Params:", req.params);
+        console.log("User ID from middleware:", req.userId);
+        
         const { email } = req.body; 
         const canvasId = req.params.id;
         const userId = req.userId; 
 
-        // Find the user by email
+        if (!email) {
+            console.log("ERROR: No email in request body");
+            return res.status(400).json({ error: "Email is required" });
+        }
+
+        if (!userId) {
+            console.log("ERROR: No userId from middleware");
+            return res.status(401).json({ error: "Authentication required" });
+        }
+
+        console.log("Searching for user with email:", email);
         const userToShare = await User.findOne({ email });
+        console.log("User search result:", userToShare ? "FOUND" : "NOT FOUND");
+        
         if (!userToShare) {
             return res.status(404).json({ error: "User with this email not found" });
         }
 
+        console.log("Searching for canvas with ID:", canvasId);
         const canvas = await Canvas.findById(canvasId);
+        console.log("Canvas search result:", canvas ? "FOUND" : "NOT FOUND");
+        
         if (!canvas) {
             return res.status(404).json({ error: "Canvas not found" });
         }
@@ -63,26 +128,28 @@ exports.shareCanvas = async (req, res) => {
             return res.status(403).json({ error: "Only the owner can share this canvas" });
         }
 
-        // Ensure the shared userId is an ObjectId
         const sharedUserId = userToShare._id;
 
-        // Prevent adding the owner to shared list
         if (canvas.owner.toString() === sharedUserId.toString()) {
             return res.status(400).json({ error: "Owner cannot be added to shared list" });
         }
 
-        // Check if the user is already in the shared array
         const alreadyShared = canvas.shared.some(id => id.toString() === sharedUserId.toString());
         if (alreadyShared) {
             return res.status(400).json({ error: "Already shared with user" });
         }
 
-        // Add user to shared list
+        console.log("Adding user to shared list...");
         canvas.shared.push(sharedUserId);
         await canvas.save();
+        console.log("Canvas shared successfully!");
 
         res.json({ message: "Canvas shared successfully" });
     } catch (error) {
+        console.error("=== SHARE CANVAS ERROR ===");
+        console.error("Error type:", error.constructor.name);
+        console.error("Error message:", error.message);
+        console.error("Error stack:", error.stack);
         res.status(500).json({ error: "Failed to share canvas", details: error.message });
     }
 };

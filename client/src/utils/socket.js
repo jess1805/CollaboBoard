@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 let socket;
 
 export const initSocket = (token) => {
-  const SERVER_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+  const SERVER_URL = import.meta.env.VITE_API_BASE_URL || "https://collaboboard-mqtp.onrender.com";
 
   socket = io(SERVER_URL, {
     extraHeaders: {
